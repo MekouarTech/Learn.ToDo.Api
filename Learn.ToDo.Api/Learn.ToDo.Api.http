@@ -1,0 +1,6 @@
+@Learn.ToDo.Api_HostAddress = http://localhost:5236
+
+GET {{Learn.ToDo.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
