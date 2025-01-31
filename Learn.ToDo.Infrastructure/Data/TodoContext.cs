@@ -10,8 +10,8 @@ namespace Learn.ToDo.Infrastructure.Data
 {
     public class TodoContext : DbContext
     {
-        private readonly static string MyConString = "Server=DESKTOP-TKBJLN8\\SQLEXPRESS;Database=LearnTodoApiApp2;Trusted_Connection=True;TrustServerCertificate=True;";
-        //"Server=DESKTOP-TKBJLN8\\SQLEXPRESS;Database=LearnTodoApiApp;User=username;Password=123456789Aa;TrustServerCertificate=True;";
+        private readonly static string MyConString = "Server=ServerName;Database=LearnTodoApiApp2;Trusted_Connection=True;TrustServerCertificate=True;";
+        
         public TodoContext()
         {
             
