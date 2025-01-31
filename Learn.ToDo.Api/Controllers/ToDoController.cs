@@ -1,5 +1,6 @@
 ﻿using Learn.ToDo.Application.Interfaces;
 using Learn.ToDo.Application.Model;
+using Learn.ToDo.Infrastructure.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
@@ -16,7 +17,7 @@ namespace Learn.ToDo.Api.Controllers
         {
             this._toDoService = toDoService;
         }
-
+        /*
         [HttpGet]
         public async Task<List<ToDoDetail>> GetAllTodos()
         {
@@ -40,6 +41,6 @@ namespace Learn.ToDo.Api.Controllers
         public async Task DeleteToDo(string todo)
         {
             await _toDoService.DeleteToDo(todo);
-        }
+        }*/
     }
 }
