@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Learn.ToDo.Infrastructure\Learn.ToDo.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,6 @@
 ﻿using Learn.ToDo.Application.Interfaces;
-using Learn.ToDo.Application.Model;
+using Learn.ToDo.Infrastructure.Data;
+using Learn.ToDo.Infrastructure.Models;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
@@ -12,31 +13,30 @@ namespace Learn.ToDo.Application.Services
     public class ToDoService : IToDoService
     {
         private IMemoryCache _memoryCache;
-        public ToDoService(IMemoryCache memoryCache)
+        private readonly TodoContext _todoContext;
+
+        public ToDoService(IMemoryCache memoryCache, TodoContext todoContext)
         {
-            _memoryCache = memoryCache;   
+            _memoryCache = memoryCache;
+            this._todoContext = todoContext;
         }
 
-        public async Task AddToDo(ToDoDetail todo) => _memoryCache.Set(todo.Id, todo);
-        
-        public async Task DeleteToDo(string id) => _memoryCache.Remove(id);
-
-        public async Task<ToDoDetail> GetToDo(string id) => _memoryCache.TryGetValue(id, out ToDoDetail todo) ? todo : null;
-
-
-        public async Task<List<ToDoDetail>> GetToDoList()
+        public async Task AddToDo(ToDoDetail todo)
         {
-            List<ToDoDetail> list = new List<ToDoDetail>();
-
-            ToDoDetail todo1 = await this.GetToDo("1");
-            ToDoDetail todo2 = await this.GetToDo("2");
-            ToDoDetail todo3 = await this.GetToDo("3");
-            
-            list.Add(todo1);
-            list.Add(todo2);
-            list.Add(todo3);
-
-            return list;
+            _todoContext.ToDoDetails.Add(todo);
+            _todoContext.SaveChanges();
         }
+
+        public async Task DeleteToDo(int id)
+        {
+            var todo = await GetToDo(id);
+            _todoContext.ToDoDetails.Remove(todo);
+            _todoContext.SaveChanges();
+        }
+
+        public async Task<ToDoDetail> GetToDo(int id) => _todoContext.ToDoDetails.FirstOrDefault(x => x.TodoId == id);
+
+
+        public async Task<List<ToDoDetail>> GetToDoList() => _todoContext.ToDoDetails.Where(x => x.UserId == 1).ToList();
     }
 }

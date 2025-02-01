@@ -8,6 +8,7 @@ namespace Learn.ToDo.Infrastructure
         public static IServiceCollection AddInfrastructureService(this IServiceCollection collection)
         {
             collection.AddDbContext<TodoContext>();
+            collection.AddSingleton<TodoContext>();
             return collection;
         }
     }

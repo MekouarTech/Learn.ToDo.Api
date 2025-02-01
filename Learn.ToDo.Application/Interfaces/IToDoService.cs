@@ -1,4 +1,4 @@
-﻿using Learn.ToDo.Application.Model;
+﻿using Learn.ToDo.Infrastructure.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +9,9 @@ namespace Learn.ToDo.Application.Interfaces
 {
     public interface IToDoService
     {
-        Task<ToDoDetail> GetToDo(string id);
+        Task<ToDoDetail> GetToDo(int id);
         Task<List<ToDoDetail>> GetToDoList();
         Task AddToDo(ToDoDetail todo);
-        Task DeleteToDo(string id);
+        Task DeleteToDo(int id);
     }
 }

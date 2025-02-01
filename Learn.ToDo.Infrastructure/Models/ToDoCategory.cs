@@ -11,8 +11,15 @@ namespace Learn.ToDo.Infrastructure.Models
 {
     public class ToDoCategory
     {
-        public int Id { get; set; }
+        [Key]
+        public int TodoCategoryId { get; set; }
+        public int TodoId { get; set; }
+        public int CategoryId { get; set; }
+        
+        [ForeignKey("TodoId")]
         public ToDoDetail ToDoDetail{ get; set; }
+
+        [ForeignKey("CategoryId")]
         public Category Category { get; set; }
     }
 }
